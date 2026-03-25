@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Dispatch, SetStateAction } from 'react'
 import { GameState } from '@/types/game'
 import { rollDice, calculateNewPosition, getSnakeOrLadder } from '@/utils/gameLogic'
 import { Dices, RotateCcw, Trophy, Users } from 'lucide-react'
@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 interface GameControlsProps {
   gameState: GameState
-  setGameState: (state: GameState) => void
+  setGameState: Dispatch<SetStateAction<GameState>>
   onResetGame: () => void
 }
 
@@ -25,7 +25,7 @@ export default function GameControls({ gameState, setGameState, onResetGame }: G
     let rollCount = 0
     const rollInterval = setInterval(() => {
       const tempDice = rollDice()
-      setGameState(prev => ({ ...prev, diceValue: tempDice }))
+      setGameState((prev: GameState) => ({ ...prev, diceValue: tempDice }))
       rollCount++
       
       if (rollCount >= 10) {

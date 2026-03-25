@@ -1,12 +1,13 @@
 'use client'
 
+import { Dispatch, SetStateAction } from 'react'
 import { GameState } from '@/types/game'
 import { getBoardPosition, snakesAndLadders } from '@/utils/gameLogic'
 import { motion } from 'framer-motion'
 
 interface GameBoardProps {
   gameState: GameState
-  setGameState: (state: GameState) => void
+  setGameState: Dispatch<SetStateAction<GameState>>
 }
 
 export default function GameBoard({ gameState }: GameBoardProps) {
